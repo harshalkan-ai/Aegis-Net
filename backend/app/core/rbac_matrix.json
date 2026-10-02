@@ -1,0 +1,17 @@
+{
+  "RESEARCHER": {
+    "allowed_tools": ["search_docs", "fetch_web_content", "read_workspace_file"],
+    "denied_tools": ["write_workspace_file", "execute_command", "deploy_service"],
+    "review_tools": []
+  },
+  "CODER": {
+    "allowed_tools": ["read_workspace_file", "write_workspace_file", "run_local_tests"],
+    "denied_tools": ["deploy_service", "read_system_secrets"],
+    "review_tools": ["execute_command"]
+  },
+  "DEPLOYER": {
+    "allowed_tools": ["build_artifact", "deploy_service", "get_deploy_status"],
+    "denied_tools": ["write_workspace_file", "read_system_secrets"],
+    "review_tools": ["rollback_deployment"]
+  }
+}
