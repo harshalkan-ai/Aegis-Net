@@ -36,8 +36,17 @@ def deployer_node(state: AgentExecutionState) -> AgentExecutionState:
 
     logger.info("[DEPLOYER] Initiating deployment through AEGIS gateway...")
 
+<<<<<<< HEAD
     from app.services.session_manager import session_manager
     session_manager.update_session_role(state["session_id"], "DEPLOYER")
+=======
+<<<<<<< HEAD
+    from app.services.session_manager import session_manager
+    session_manager.update_session_role(state["session_id"], "DEPLOYER")
+
+=======
+>>>>>>> 269c4536791406ae7200b6f0aced48c638234a60
+>>>>>>> 30aea8107e52fc279ef4176b187de31f143d2e0c
     envelope = ToolCallEnvelope(
         session_id=state["session_id"],
         agent_id=state["agent_id_deployer"],

@@ -1,6 +1,10 @@
 """
 AEGIS-NET Researcher Agent Node.
+<<<<<<< HEAD
 Performs real web research (web search / doc retrieval) via Tavily through the AEGIS gateway.
+=======
+Performs simulated research (web search / doc retrieval) through the AEGIS gateway.
+>>>>>>> 30aea8107e52fc279ef4176b187de31f143d2e0c
 All tool invocations pass through SecurityGateway.intercept_tool_call().
 """
 import logging
@@ -24,7 +28,15 @@ def researcher_node(state: AgentExecutionState) -> AgentExecutionState:
     if state.get("cancellation_token") == CANCEL_TOKEN:
         return state
 
+<<<<<<< HEAD
     logger.info(f"[RESEARCHER] Processing research task: {state['input_query'][:80]!r}")
+=======
+<<<<<<< HEAD
+    logger.info(f"[RESEARCHER] Processing research task: {state['input_query'][:80]!r}")
+=======
+    logger.info(f"[RESEARCHER] Processing query: {state['input_query'][:80]!r}")
+>>>>>>> 269c4536791406ae7200b6f0aced48c638234a60
+>>>>>>> 30aea8107e52fc279ef4176b187de31f143d2e0c
 
     envelope = ToolCallEnvelope(
         session_id=state["session_id"],
@@ -42,7 +54,14 @@ def researcher_node(state: AgentExecutionState) -> AgentExecutionState:
         "reason": result.reason,
         "latency_ms": result.execution_latency_ms,
         "envelope_token": result.envelope_token,
+<<<<<<< HEAD
         "risk_assessment": result.risk_assessment,
+=======
+<<<<<<< HEAD
+        "risk_assessment": result.risk_assessment,
+=======
+>>>>>>> 269c4536791406ae7200b6f0aced48c638234a60
+>>>>>>> 30aea8107e52fc279ef4176b187de31f143d2e0c
     }
 
     if result.decision == Decision.BLOCK.value:
@@ -66,6 +85,10 @@ def researcher_node(state: AgentExecutionState) -> AgentExecutionState:
             "gateway_results": gw_results,
         }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 30aea8107e52fc279ef4176b187de31f143d2e0c
     # Execute real Tavily web research
     from app.services.tavily_client import perform_tavily_search
     tavily_res = perform_tavily_search(state["input_query"])
@@ -87,10 +110,33 @@ def researcher_node(state: AgentExecutionState) -> AgentExecutionState:
     )
 
     logger.info(f"[RESEARCHER] Completed. Retrieved {len(sources)} sources from Tavily.")
+<<<<<<< HEAD
+=======
+=======
+    # Simulate research output when allowed
+    research_notes = (
+        f"[RESEARCHER OUTPUT]\n"
+        f"Query: {state['input_query']}\n"
+        f"Summary: Retrieved 12 relevant documents on the topic. "
+        f"Key findings: security best practices, zero-trust architecture patterns, "
+        f"and regulatory compliance frameworks identified.\n"
+        f"Gateway token: {result.envelope_token}"
+    )
+
+    logger.info("[RESEARCHER] Completed. Research notes generated.")
+>>>>>>> 269c4536791406ae7200b6f0aced48c638234a60
+>>>>>>> 30aea8107e52fc279ef4176b187de31f143d2e0c
     return {
         **state,
         "research_notes": research_notes,
         "status": "RUNNING",
         "gateway_results": gw_results,
+<<<<<<< HEAD
         "tavily_sources": sources,
+=======
+<<<<<<< HEAD
+        "tavily_sources": sources,
+=======
+>>>>>>> 269c4536791406ae7200b6f0aced48c638234a60
+>>>>>>> 30aea8107e52fc279ef4176b187de31f143d2e0c
     }

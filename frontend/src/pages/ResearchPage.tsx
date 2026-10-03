@@ -23,8 +23,11 @@ export const ResearchPage: React.FC<ResearchPageProps> = ({
   const [loading, setLoading] = useState(false);
   const [coderLoading, setCoderLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+<<<<<<< HEAD
   const [tavilyTesting, setTavilyTesting] = useState(false);
   const [tavilyStatus, setTavilyStatus] = useState<{ success: boolean; message: string; result_count: number } | null>(null);
+=======
+>>>>>>> 30aea8107e52fc279ef4176b187de31f143d2e0c
 
   // Sync state if demoQuery changes
   React.useEffect(() => {
@@ -33,6 +36,7 @@ export const ResearchPage: React.FC<ResearchPageProps> = ({
     }
   }, [demoQuery]);
 
+<<<<<<< HEAD
   const handleTestTavily = async () => {
     setTavilyTesting(true);
     setTavilyStatus(null);
@@ -50,6 +54,8 @@ export const ResearchPage: React.FC<ResearchPageProps> = ({
     }
   };
 
+=======
+>>>>>>> 30aea8107e52fc279ef4176b187de31f143d2e0c
   const handleStartResearch = async () => {
     if (!query.trim()) return;
     setLoading(true);
@@ -124,6 +130,7 @@ export const ResearchPage: React.FC<ResearchPageProps> = ({
             <span>Tavily Web Research + DeBERTa ONNX Threat Interception via Backend Proxy</span>
           </div>
 
+<<<<<<< HEAD
           <div className="flex items-center gap-2">
             <button
               onClick={handleTestTavily}
@@ -187,6 +194,26 @@ export const ResearchPage: React.FC<ResearchPageProps> = ({
             </span>
           </div>
         )}
+=======
+          <button
+            onClick={handleStartResearch}
+            disabled={loading || !query.trim()}
+            className="btn-primary"
+          >
+            {loading ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                <span>Researching with Tavily & ONNX...</span>
+              </>
+            ) : (
+              <>
+                <Search className="w-4 h-4" />
+                <span>START RESEARCH</span>
+              </>
+            )}
+          </button>
+        </div>
+>>>>>>> 30aea8107e52fc279ef4176b187de31f143d2e0c
 
         {error && (
           <div className="p-3 rounded-lg text-xs font-medium flex items-start gap-2"

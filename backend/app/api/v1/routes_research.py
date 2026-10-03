@@ -9,12 +9,16 @@ from typing import Dict, Any, Optional, List
 
 from app.agents.researcher import researcher_node
 from app.services.session_manager import session_manager
+<<<<<<< HEAD
 from app.services.tavily_client import test_tavily_connection, perform_tavily_search
+=======
+>>>>>>> 30aea8107e52fc279ef4176b187de31f143d2e0c
 
 router = APIRouter(prefix="/research", tags=["Research"])
 logger = logging.getLogger(__name__)
 
 
+<<<<<<< HEAD
 @router.get(
     "/tavily/test",
     summary="Test Tavily Web Search Integration",
@@ -26,6 +30,8 @@ async def tavily_test_route() -> Dict[str, Any]:
 
 
 
+=======
+>>>>>>> 30aea8107e52fc279ef4176b187de31f143d2e0c
 class ResearchStartRequest(BaseModel):
     query: str
     agent_id: str = "agent-researcher-01"

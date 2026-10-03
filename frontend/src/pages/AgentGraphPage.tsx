@@ -12,10 +12,17 @@ export const AgentGraphPage: React.FC<AgentGraphPageProps> = ({ currentSession }
   const isBlocked = decision === 'BLOCK';
 
   // Determine active states for nodes
+<<<<<<< HEAD
   const researcherState: string = !currentSession ? 'WAITING' : status === 'RUNNING' || status === 'COMPLETED' ? 'COMPLETED' : 'BLOCKED';
   const gate1State: string = !currentSession ? 'WAITING' : isBlocked ? 'BLOCKED' : 'ALLOW';
   const coderState: string = !currentSession ? 'WAITING' : isBlocked ? 'SKIPPED' : 'ACTIVE';
   const deployerState: string = !currentSession ? 'WAITING' : isBlocked ? 'SKIPPED' : 'READY';
+=======
+  const researcherState = !currentSession ? 'WAITING' : status === 'RUNNING' || status === 'COMPLETED' ? 'COMPLETED' : 'BLOCKED';
+  const gate1State = !currentSession ? 'WAITING' : isBlocked ? 'BLOCKED' : 'ALLOW';
+  const coderState = !currentSession ? 'WAITING' : isBlocked ? 'SKIPPED' : 'ACTIVE';
+  const deployerState = !currentSession ? 'WAITING' : isBlocked ? 'SKIPPED' : 'READY';
+>>>>>>> 30aea8107e52fc279ef4176b187de31f143d2e0c
 
   const getNodeStyles = (state: string, isGate = false) => {
     if (state === 'COMPLETED' || state === 'ACTIVE' || state === 'ALLOW' || state === 'READY') {

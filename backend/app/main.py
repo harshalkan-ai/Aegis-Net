@@ -90,6 +90,7 @@ app.include_router(workspace_router, prefix=settings.API_V1_PREFIX)
 app.include_router(sandbox_router, prefix=settings.API_V1_PREFIX)
 app.include_router(deployer_router, prefix=settings.API_V1_PREFIX)
 
+<<<<<<< HEAD
 from app.services.tavily_client import test_tavily_connection
 
 
@@ -100,6 +101,8 @@ async def test_tavily_endpoint() -> Dict[str, Any]:
     return test_tavily_connection()
 
 
+=======
+>>>>>>> 30aea8107e52fc279ef4176b187de31f143d2e0c
 
 @app.get(
     "/health",
