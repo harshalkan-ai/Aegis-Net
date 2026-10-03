@@ -1,0 +1,23 @@
+{
+  "cwe_id": "CWE-78",
+  "attack_vector": "NETWORK",
+  "incident_summary": "[HEURISTIC ANALYSIS] Agent 'agent-gateway-01' attempted to invoke tool 'search_docs' which was intercepted and blocked by the AEGIS-NET Security Gateway. The action received a composite risk score of 0.8200 and an ML threat score of 1.0000, triggering a BLOCK decision.",
+  "suspicion_reasoning": "The tool invocation 'search_docs' raised multiple security flags: (1) The ONNX DeBERTa-v3 model assigned a threat score of 1.0000. (2) The composite risk engine scored 0.8200 against a block threshold of 0.60. Classification: OS Command Injection. The payload pattern '...' contains indicators consistent with unauthorized data access or manipulation intent.",
+  "threat_indicators": [
+    "High ONNX ML threat score: 1.0000 (threshold: 0.50)",
+    "Composite risk score: 0.8200 exceeded BLOCK threshold (0.60)"
+  ],
+  "behavioral_anomalies": "Agent 'agent-gateway-01' (session: policy-eval-46bde064) deviated from expected behavioral baseline. The tool 'search_docs' is either not authorized for the agent's role or the payload contains patterns inconsistent with legitimate operational use. Behavioral deviation score contributed to elevated composite risk.",
+  "potential_impact": "If the blocked action 'search_docs' had been executed, potential impact includes: unauthorized access to sensitive resources, data exfiltration to external endpoints, privilege escalation beyond the agent's authorized scope, or system compromise. Classification CWE-78 (OS Command Injection) indicates network attack surface exposure.",
+  "recommended_response": "1. Immediately investigate agent 'agent-gateway-01' session 'policy-eval-46bde064' for signs of compromise.\n2. Review all prior tool calls in this session for lateral movement indicators.\n3. Apply input allowlisting for tool 'search_docs' \u2014 reject payloads matching CWE-78 patterns.\n4. Enforce least-privilege RBAC: verify the agent role is correct and appropriately scoped.\n5. Enable real-time alerting for future CWE-78 pattern matches in this deployment.\n6. If circuit breaker was not triggered, consider manually quarantining this session.",
+  "forensic_confidence": 0.937,
+  "confidence_notes": "This is a heuristic analysis (no Gemini API key configured). Confidence 0.94 is derived from risk score (0.8200) and ML threat score (1.0000). Configure GEMINI_API_KEY for full LLM-powered forensic analysis.",
+  "threat_summary": "[HEURISTIC] Blocked tool 'search_docs' scored risk=0.8200, threat=1.0000. Classification: OS Command Injection. Agent was denied execution via AEGIS-NET Policy Engine mandatory override.",
+  "affected_components": [
+    "SecurityGateway",
+    "search_docs",
+    "Session:policy-eval-46bde064",
+    "Agent:agent-gateway-01"
+  ],
+  "suggested_patch": "1. Sanitize and validate all tool payloads before execution. 2. Apply input allowlisting for 'search_docs'. 3. Enforce principle of least privilege for agent roles. 4. Enable Supabase Realtime alerting for CWE-78 pattern matches."
+}

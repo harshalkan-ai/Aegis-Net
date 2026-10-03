@@ -1,0 +1,15 @@
+# AEGIS-NET Backend Dependencies
+onnxruntime
+transformers
+torch
+fastapi
+uvicorn[standard]
+pydantic-settings
+supabase
+langgraph
+langchain-core
+google-genai
+prometheus-client
+pytest
+pytest-asyncio
+httpx

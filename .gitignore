@@ -1,0 +1,30 @@
+﻿# Environment variables (CRITICAL: NEVER COMMIT)
+.env
+*.env
+.env.*
+
+# Python Cache & Virtual Environments
+__pycache__/
+*.py[cod]
+*.class
+venv/
+.venv/
+env/
+
+# Large Model Binaries (Hugging Face / ONNX weights)
+backend/weights/*.onnx
+backend/weights/*.bin
+backend/weights/*.safetensors
+backend/weights/*.pt
+
+# Agent Workspace Output Files
+backend/agent_workspace/*
+!backend/agent_workspace/.gitkeep
+
+# Testing & IDE artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+.vscode/
+.idea/
+*.log
