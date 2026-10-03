@@ -30,12 +30,18 @@ class Settings(BaseSettings):
     # Supabase Integration
     SUPABASE_URL: str = ""
     SUPABASE_SERVICE_ROLE_KEY: str = ""
+<<<<<<< HEAD
     SUPABASE_ANON_KEY: str = ""
     
     # AI Integration
     GEMINI_API_KEY: str = ""
     GEMINI_MODEL: str = "gemini-2.5-flash"
     TAVILY_API_KEY: str = ""
+=======
+    
+    # Gemini LLM Integration
+    GEMINI_API_KEY: str = ""
+>>>>>>> 269c4536791406ae7200b6f0aced48c638234a60
     
     # Security & CORS
     CORS_ORIGINS: List[str] = ["*"]

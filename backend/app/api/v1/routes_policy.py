@@ -1,6 +1,7 @@
 """
 AEGIS-NET Policy API Routes.
 Exposes policy evaluation as a standalone endpoint for diagnostics and audit.
+<<<<<<< HEAD
 BLOCK and REVIEW decisions automatically create security incidents with Gemini forensic analysis.
 """
 import uuid
@@ -8,16 +9,27 @@ import logging
 from fastapi import APIRouter
 from pydantic import BaseModel
 from typing import Union, Dict, Any, Optional
+=======
+"""
+from fastapi import APIRouter
+from pydantic import BaseModel
+from typing import Union, Dict, Any
+>>>>>>> 269c4536791406ae7200b6f0aced48c638234a60
 
 from app.schemas.policy import DecisionExplanation
 from app.schemas.security import ContextEvaluationRequest
 from app.context.context_engine import context_engine
 from app.models.risk_scorer import calculate_risk
 from app.policy.policy_engine import evaluate_policy, build_explanation
+<<<<<<< HEAD
 from app.incidents.incident_service import incident_service
 
 router = APIRouter(prefix="/policy", tags=["Policy Engine"])
 logger = logging.getLogger(__name__)
+=======
+
+router = APIRouter(prefix="/policy", tags=["Policy Engine"])
+>>>>>>> 269c4536791406ae7200b6f0aced48c638234a60
 
 
 class PolicyEvaluationRequest(BaseModel):
@@ -25,13 +37,17 @@ class PolicyEvaluationRequest(BaseModel):
     tool_name: str
     payload: Union[Dict[str, Any], str] = ""
     session_id: str = ""
+<<<<<<< HEAD
     agent_id: str = "agent-gateway-01"
+=======
+>>>>>>> 269c4536791406ae7200b6f0aced48c638234a60
 
 
 @router.post(
     "/evaluate",
     response_model=DecisionExplanation,
     summary="Full Policy Pipeline Evaluation",
+<<<<<<< HEAD
     description=(
         "Runs Context Engine → ML Threat Score → Risk Scorer → Policy Engine and returns a structured decision. "
         "BLOCK decisions automatically create a Security Incident with Gemini CISO forensic analysis. "
@@ -40,6 +56,12 @@ class PolicyEvaluationRequest(BaseModel):
 )
 async def evaluate_policy_endpoint(req: PolicyEvaluationRequest):
     """End-to-end policy evaluation pipeline — incidents auto-created on BLOCK/REVIEW."""
+=======
+    description="Runs Context Engine → ML Threat Score → Risk Scorer → Policy Engine and returns a structured decision.",
+)
+async def evaluate_policy_endpoint(req: PolicyEvaluationRequest):
+    """End-to-end policy evaluation pipeline."""
+>>>>>>> 269c4536791406ae7200b6f0aced48c638234a60
     ctx = context_engine.evaluate_context(
         role=req.role,
         tool_name=req.tool_name,
@@ -59,6 +81,7 @@ async def evaluate_policy_endpoint(req: PolicyEvaluationRequest):
     )
 
     policy = evaluate_policy(risk_result, ctx)
+<<<<<<< HEAD
     explanation = build_explanation(policy, risk_result, ctx)
 
     decision = policy.decision
@@ -95,3 +118,6 @@ async def evaluate_policy_endpoint(req: PolicyEvaluationRequest):
             logger.error(f"[POLICY] Incident creation failed: {e}")
 
     return explanation
+=======
+    return build_explanation(policy, risk_result, ctx)
+>>>>>>> 269c4536791406ae7200b6f0aced48c638234a60
